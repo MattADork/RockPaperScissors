@@ -5,9 +5,69 @@
   <meta charset="UTF-8"/>
 </head>
 <body>
+
+
   <script>
-    // Your JavaScript goes here!
-    console.log("Hello, World!")
+function computerPlay() {
+  let computerChoices = ["rock", "paper", "scissors"];
+  computerSelection = computerChoices[(Math.floor(Math.random() * 3))];
+  return computerSelection;
+}
+
+function playerSelection() {
+  playerChoice = prompt("Rock, Paper, or Scissors?").toLowerCase();
+  computerChoice = computerPlay();
+  if (computerChoice === playerChoice) {
+    console.log(`You chose ${playerChoice}`);
+    console.log(`Your opponent chose ${computerChoice}`);
+    console.log(`You tie, ${playerChoice} and ${computerChoice} are the same!`);
+    return "tie";
+  } else if (computerChoice === "rock" && playerChoice === "scissors" ||
+             computerChoice === "paper" && playerChoice === "rock" ||
+             computerChoice === "scissors" && playerChoice === "paper") {
+    console.log(`You chose ${playerChoice}`);
+    console.log(`Your opponent chose ${computerChoice}`);
+    console.log(`You lose, ${computerChoice} beats ${playerChoice}!`);
+    return "lose";
+  } else if (computerChoice === "rock" && playerChoice === "paper" ||
+             computerChoice === "paper" && playerChoice === "scissors" ||
+             computerChoice === "scissors" && playerChoice === "rock") {
+    console.log(`You chose ${playerChoice}`);
+    console.log(`Your opponent chose ${computerChoice}`);
+    console.log(`You win, ${playerChoice} beats ${computerChoice}!`);
+    return "win";
+  } else {
+    return 'Invalid argument, try again!';
+  }
+}
+
+function game() {
+  let playerScore = 0;
+  let computerScore = 0;
+
+  while (playerScore < 5 && computerScore < 5) {
+    outcome = playerSelection();
+   if (outcome === "win") {
+     playerScore++;
+     console.log(`Your score: ${playerScore}\nComputer score: ${computerScore}`);
+   } else if (outcome === "lose") {
+     computerScore++;
+     console.log(`Your score: ${playerScore}\nComputer score: ${computerScore}`);
+   } else {
+     console.log(`Your score: ${playerScore}\nComputer score: ${computerScore}`);
+   }
+
+   if (playerScore === 5) {
+     console.log("You win!");
+   } else if (computerScore === 5){
+     console.log("You lose!");
+   }
+  }
+}
   </script>
+
+
+
+
 </body>
 </html>
