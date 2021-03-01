@@ -35,26 +35,38 @@ function playRound() {
   playerChoice = this.id;
   computerChoice = computerPlay();
   if (computerChoice === playerChoice) {
-    console.log(`You chose ${playerChoice}`);
-    console.log(`Your opponent chose ${computerChoice}`);
-    console.log(`You tie, ${playerChoice} and ${computerChoice} are the same!`);
+    results.textContent = `You chose ${playerChoice},
+    your opponent chose ${computerChoice},
+    YOU TIE, ${playerChoice} and ${computerChoice} are the same!`;
     return "tie";
   } else if (computerChoice === "rock" && playerChoice === "scissors" ||
              computerChoice === "paper" && playerChoice === "rock" ||
              computerChoice === "scissors" && playerChoice === "paper") {
-    console.log(`You chose ${playerChoice}`);
-    console.log(`Your opponent chose ${computerChoice}`);
-    console.log(`You lose, ${computerChoice} beats ${playerChoice}!`);
+    results.textContent = `You chose ${playerChoice}, your opponent chose ${computerChoice}, YOU LOSE, ${computerChoice} beats ${playerChoice}!`;
     return "lose";
   } else if (computerChoice === "rock" && playerChoice === "paper" ||
              computerChoice === "paper" && playerChoice === "scissors" ||
              computerChoice === "scissors" && playerChoice === "rock") {
-    console.log(`You chose ${playerChoice}`);
-    console.log(`Your opponent chose ${computerChoice}`);
-    console.log(`You win, ${playerChoice} beats ${computerChoice}!`);
+    results.textContent = `You chose ${playerChoice}, your opponent chose ${computerChoice}, YOU WIN, ${playerChoice} beats ${computerChoice}!`;
     return "win";
   } else {
     return 'Invalid argument, try again!';
+  }
+}
+
+function game() {
+  let myScore = 0;
+  let compScore = 0;
+
+  while (myScore < 5 && theirScore < 5) {
+    outcome = playRound();
+    if (outcome === 'win') {
+      myScore++;
+      ourScore.textContent = 'Your Score: ' + myScore;
+    } else if (outcome ==='lose') {
+      compScore++;
+      theirScore.textContent = 'Opponent\'s Score: ' + compScore;
+    } 
   }
 }
   </script>
