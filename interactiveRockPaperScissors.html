@@ -10,20 +10,29 @@
   <button id='paper'>Paper</button>
   <button id='scissors'>Scissors</button>
 
+  <div id='results'></div>
+
+  <p id="resultText"></p>
+  <p id='playerScore'>Your Score: </p>
+  <p id='computerScore'>Opponent's Score: </p><br>
+
   <script>
+
+const buttons = document.querySelectorAll('button');
+const ourScore = document.querySelector('#playerScore');
+const theirScore = document.querySelector('#computerScore');
+const results = document.querySelector('#resultText');
+
 function computerPlay() {
   let computerChoices = ["rock", "paper", "scissors"];
   computerSelection = computerChoices[(Math.floor(Math.random() * 3))];
   return computerSelection;
 }
 
-function playerSelection() {
-  playerChoice = prompt("Rock, Paper, or Scissors?").toLowerCase();
-  return playerChoice;
-}
+buttons.forEach(button => button.addEventListener('click', playRound));
 
 function playRound() {
-  playerChoice = playerSelection();
+  playerChoice = this.id;
   computerChoice = computerPlay();
   if (computerChoice === playerChoice) {
     console.log(`You chose ${playerChoice}`);
@@ -46,30 +55,6 @@ function playRound() {
     return "win";
   } else {
     return 'Invalid argument, try again!';
-  }
-}
-
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-
-  while (playerScore < 5 && computerScore < 5) {
-    outcome = playRound();
-   if (outcome === "win") {
-     playerScore++;
-     console.log(`Your score: ${playerScore}\nComputer score: ${computerScore}`);
-   } else if (outcome === "lose") {
-     computerScore++;
-     console.log(`Your score: ${playerScore}\nComputer score: ${computerScore}`);
-   } else {
-     console.log(`Your score: ${playerScore}\nComputer score: ${computerScore}`);
-   }
-
-   if (playerScore === 5) {
-     alert("You win!");
-   } else if (computerScore === 5){
-     alert("You lose!");
-   }
   }
 }
   </script>
